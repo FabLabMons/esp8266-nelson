@@ -4,6 +4,7 @@
 
 const char* ssid = "*";
 const char* password = "*";
+const int servo_pin = D1
 
 Servo my_servo;
 int servo_position = 0;
@@ -80,7 +81,7 @@ void setup() {
   Serial.println(ssid);
 
   // prepare servo
-  my_servo.attach(D1);
+  my_servo.attach(servo_position);
   my_servo.write(servo_position);
   
   while (WiFi.status() != WL_CONNECTED) {
