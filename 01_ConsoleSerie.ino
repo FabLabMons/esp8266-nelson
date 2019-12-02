@@ -1,6 +1,6 @@
 #include <Servo.h>
 
-const int servo_pin = D1
+const int servo_pin = D1;
 
 Servo my_servo;
 String user_response;
