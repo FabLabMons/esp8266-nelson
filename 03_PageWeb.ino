@@ -4,7 +4,7 @@
 
 const char* ssid = "*";
 const char* password = "*";
-const int servo_pin = D1
+const int servo_pin = D1;
 
 Servo my_servo;
 int servo_position = 0;
@@ -19,12 +19,12 @@ void displayForm() {
     html += " checked";
   }
   html += "> 0°</p>";
-  html += "<p><input type=\"radio\" name=\"servo_position\" value=\"90\"";
+  html += "<p><input type=\"radio\" name=\"servo_position\" value=\"30\"";
   if (servo_position == 30) {
     html += " checked";
   }
   html += "> 30°</p>";
-  html += "<p><input type=\"radio\" name=\"servo_position\" value=\"90\"";
+  html += "<p><input type=\"radio\" name=\"servo_position\" value=\"60\"";
   if (servo_position == 60) {
     html += " checked";
   }
@@ -34,17 +34,17 @@ void displayForm() {
     html += " checked";
   }
   html += "> 90°</p>";
-  html += "<p><input type=\"radio\" name=\"servo_position\" value=\"180\"";
+  html += "<p><input type=\"radio\" name=\"servo_position\" value=\"120\"";
   if (servo_position == 120) {
     html += " checked";
   }
   html += "> 120°</p>";
-  html += "<p><input type=\"radio\" name=\"servo_position\" value=\"90\"";
+  html += "<p><input type=\"radio\" name=\"servo_position\" value=\"150\"";
   if (servo_position == 150) {
     html += " checked";
   }
   html += "> 150°</p>";
-  html += "<p><input type=\"radio\" name=\"servo_position\" value=\"90\"";
+  html += "<p><input type=\"radio\" name=\"servo_position\" value=\"180\"";
   if (servo_position == 180) {
     html += " checked";
   }
@@ -81,7 +81,7 @@ void setup() {
   Serial.println(ssid);
 
   // prepare servo
-  my_servo.attach(servo_position);
+  my_servo.attach(servo_pin, 500, 2500);
   my_servo.write(servo_position);
   
   while (WiFi.status() != WL_CONNECTED) {
@@ -100,11 +100,10 @@ void setup() {
   server.onNotFound(redirectToForm);
   server.begin();
   Serial.print("Serveur web disponible a l'adresse http://");
-  Serial.print(WiFi.localIP())
-  Serial.println("/")
+  Serial.print(WiFi.localIP());
+  Serial.println("/");
 }
 
 void loop() {
   server.handleClient();
 }
-
